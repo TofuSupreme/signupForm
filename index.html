@@ -38,24 +38,21 @@
     }
 
     .main-text {
-      /* position: absolute;
-      top: 10%;
-      left: 10%; */
       margin-top: 3em;
       text-align: center;
+      font-weight: 600;     
+      color: white;
     }
 
-    .sub-text {
-      /* position:absolute;
-      top: 25%;
-      left: 10%; */
+    .sub-text {      
+      padding: 8px;
+      text-align: center;
+      font-weight: 400;
+      color:white;
     }
 
     .top-button {
-      /* position: absolute;
-      left: 0;
-      top: 20%; */
-      margin-top: 4em;
+      margin-top: 3em;
       padding: 18px 55px;
       background-color: hsl(248, 32%, 49%);
       font-size: 1.55rem;
@@ -68,19 +65,19 @@
     }
 
     #form {
-      /* position: absolute; 
-      left: 30%;
-      top: 45% */
       display: flex;
       flex-direction: column;
       margin-top: 1.5em;
+      margin-bottom: 1.5em;
       padding: 1.5em;
       background-color: white;
       border-radius: 10px;
+      box-shadow: 0px 8px 1.5px 0px rgba(0,0,0,0.15);
     }
 
     #form input {
       /* to change height use line-height */
+      font-weight: 700;
       box-sizing: border-box;
       width: 100%;
       margin-bottom: 1.3em;
@@ -88,10 +85,42 @@
       line-height: 5.45rem;
       border-radius: 10px;
       border: 1px solid rgba(0,0,0,0.15);
+      
     }
 
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    #submit {
+      background-color: hsl(154, 59%, 51%);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: white;
+      line-height: 4;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: inset 0px -5px 0px 0px rgb(0 0 0 / 10%);
+    }
+
+    .bottom-text {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
+      color: hsl(87, 0%, 67%);
+      margin: 10px 30px 0 20px;
+      
+    }
+
+    .terms {
+      font-weight: 600;
+      color:hsl(0, 100%, 74%)
+    }
+    .attribution { 
+      display: none;
+      font-size: 11px; 
+      text-align: center; 
+      }
+    .attribution a { 
+      display: none;
+      color: hsl(228, 45%, 44%); 
+      }
   </style>
 </head>
 <body>
@@ -115,8 +144,10 @@
       <input type="text" name="lName" id="lName" placeholder="Last Name" autocomplete="family-name" required>
       <input type="email" name="email" id="email" placeholder="Email Address" autocomplete="email" required>
       <input type="password" name="pwd" id="pwd" placeholder="Password" autocomplete="current-password" required>
-      <button type="submit">Claim your free trial </button>
-      By clicking the button, you are agreeing to our Terms and Services
+      <button type="submit" name="submit" id="submit">CLAIM YOUR FREE TRIAL </button>
+      <span class="bottom-text">
+        By clicking the button, you are agreeing to our <span class="terms">Terms and Services</span> 
+      </span>
     </form>
   </div>
 
@@ -124,7 +155,7 @@
   <footer>
     <p class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
+      Coded by <a href="#">TofuSupreme</a>.
     </p>
   </footer>
 
