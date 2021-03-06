@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
   
   <title>Frontend Mentor | Intro component with sign up form</title>
 
@@ -13,6 +15,7 @@
     * {
       margin: 0;
       padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
 
     html {
@@ -21,39 +24,70 @@
     
     body {
       min-height: 100vh;
+      font-size: 1.6rem;
       background-image: url("images/bg-intro-mobile.png");
       background-color: hsl(0, 100%, 74%) ;    
     }
 
     .container {
-      display: flex;
-      flex-direction: row;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 1.5em;
     }
 
     .main-text {
-      position: absolute;
+      /* position: absolute;
       top: 10%;
-      left: 10%;
-      font-size: 1.6rem;
+      left: 10%; */
+      margin-top: 3em;
+      text-align: center;
     }
 
     .sub-text {
-      position:absolute;
+      /* position:absolute;
       top: 25%;
-      left: 10%;
+      left: 10%; */
     }
 
     .top-button {
-      position: absolute;
-      left: 20%;
-      top: 40%;
+      /* position: absolute;
+      left: 0;
+      top: 20%; */
+      margin-top: 4em;
+      padding: 18px 55px;
+      background-color: hsl(248, 32%, 49%);
+      font-size: 1.55rem;
+      line-height: 1.7;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: 0px 8px 1.5px 0px rgba(0,0,0,0.15);
+      /* box-shadow: 0px -8px 1.5px 0px rgba(0,0,0,0.15) inset; */
     }
 
     #form {
-      position: absolute;
+      /* position: absolute; 
       left: 30%;
-      top: 45%
+      top: 45% */
+      display: flex;
+      flex-direction: column;
+      margin-top: 1.5em;
+      padding: 1.5em;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    #form input {
+      /* to change height use line-height */
+      box-sizing: border-box;
+      width: 100%;
+      margin-bottom: 1.3em;
+      padding: 0 1.2em;
+      line-height: 5.45rem;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.15);
     }
 
     .attribution { font-size: 11px; text-align: center; }
@@ -62,32 +96,30 @@
 </head>
 <body>
 
-<div class="container">
-  <blockquote class="main-text">
-    Learn to code by watching others
-  </blockquote>
+  <div class="container">
+    <h1 class="main-text">
+      Learn to code by watching others
+    </h1>
 
-    <blockquote class="sub-text">
+    <p class="sub-text">
       See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
       but understanding how developers think is invaluable. 
-    </blockquote>
+    </p>
 
     <button class="top-button"> 
       Try it free 7 days then $20/mo. thereafter
     </button>
 
-    <form action="" id="form">
-      <input type="text" name="fName" id="fName" placeholder="First Name"><br>
-      <input type="text" name="lName" id="lName" placeholder="Last Name"><br>
-      <input type="email" name="email" id="email" placeholder="Email Address"><br>
-      <input type="password" name="pwd" id="pwd" placeholder="Password"><br>
+    <form action="" id="form" autocomplete="on">
+      <input type="text" name="fName" id="fName" placeholder="First Name" autocomplete="given-name" required>
+      <input type="text" name="lName" id="lName" placeholder="Last Name" autocomplete="family-name" required>
+      <input type="email" name="email" id="email" placeholder="Email Address" autocomplete="email" required>
+      <input type="password" name="pwd" id="pwd" placeholder="Password" autocomplete="current-password" required>
       <button type="submit">Claim your free trial </button>
+      By clicking the button, you are agreeing to our Terms and Services
     </form>
-
-
   </div>
 
-  By clicking the button, you are agreeing to our Terms and Services
   
   <footer>
     <p class="attribution">
@@ -95,5 +127,21 @@
       Coded by <a href="#">Your Name Here</a>.
     </p>
   </footer>
+
+  <script>
+    // TODO:
+    // Receive an error message when the form is submitted if:
+    //    - Any input field is empty. The message for this error should say "[Field Name] cannot be empty"
+    //    - The email address is not formatted correctly (i.e. a correct email address should have this structure: name@host.tld). The message for this error should say "Looks like this is not an email"
+
+    // keep track of error state
+    // email regexp:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+    // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    // [a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?
+
+    let re = 'get your regular expression from the stackoverflow link above'
+    console.log(re.test('email input')) 
+  </script>
 </body>
 </html>
