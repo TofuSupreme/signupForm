@@ -72,6 +72,7 @@
       padding: 1.5em;
       background-color: white;
       border-radius: 10px;
+      outline: none;
       box-shadow: 0px 8px 1.5px 0px rgba(0,0,0,0.15);
     }
 
@@ -84,8 +85,27 @@
       padding: 0 1.2em;
       line-height: 5.45rem;
       border-radius: 10px;
+      outline: none;
       border: 1px solid rgba(0,0,0,0.15);
       
+    }
+    /* input:invalid {
+      border-color: #900;
+      background-color: #FDD; 
+    }
+    input:focus:invalid {
+      outline: none;
+    } */
+
+
+      .error, input.error {
+      display: inline-block;
+      outline: none;
+      width: 100%;
+      padding: 0;
+      font-size: 80%;
+      text-align: right;
+      color: hsl(0, 100%, 74%);
     }
 
     #submit {
@@ -97,6 +117,10 @@
       border: 0;
       border-radius: 10px;
       box-shadow: inset 0px -5px 0px 0px rgb(0 0 0 / 10%);
+    }
+
+    #submit:hover {
+      cursor: pointer;
     }
 
     .bottom-text {
@@ -140,10 +164,18 @@
     </button>
 
     <form action="" id="form" autocomplete="on">
-      <input type="text" name="fName" id="fName" placeholder="First Name" autocomplete="given-name" required>
-      <input type="text" name="lName" id="lName" placeholder="Last Name" autocomplete="family-name" required>
-      <input type="email" name="email" id="email" placeholder="Email Address" autocomplete="email" required>
-      <input type="password" name="pwd" id="pwd" placeholder="Password" autocomplete="current-password" required>
+      <input type="text" name="fName" id="fName" placeholder="First Name" autocomplete="given-name" required minlength="3" maxlength="25">
+      <span class="error" aria-live="polite"></span>
+
+      <input type="text" name="lName" id="lName" placeholder="Last Name" autocomplete="family-name" required minlength="3" maxlength="25">
+      <span class="error" aria-live="polite"></span>
+      
+      <input type="email" name="email" id="email" placeholder="Email Address" autocomplete="email" required minlength="3" maxlength="65">
+      <span class="error" aria-live="polite"></span>
+
+      <input type="password" name="pwd" id="pwd" placeholder="Password" autocomplete="current-password" required minlength="8" maxlength="20">
+      <span class="error" aria-live="polite"></span>
+
       <button type="submit" name="submit" id="submit">CLAIM YOUR FREE TRIAL </button>
       <span class="bottom-text">
         By clicking the button, you are agreeing to our <span class="terms">Terms and Services</span> 
@@ -160,6 +192,136 @@
   </footer>
 
   <script>
+    let form = document.getElementById("form");
+    let fName= document.getElementById("fName");
+    let lName = document.getElementById("lName");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let submit = document.getElementById("submit")
+
+    const error = document.querySelector("error")
+    
+    // const fNameError = document.querySelector('#fName + span.error')
+    // const lNameError = document.querySelector('#lName + span.error')
+    // const emailError = document.querySelector('#email + span.error')
+    // const passwordError = document.querySelector('#password + span.error')
+
+    
+    // fName.addEventListener('click', (e)=>{
+    //   if(fName.validity.valid){
+    //     fNameError.textContent = '';
+    //     fNameError.className = 'error'
+    //   } else {
+    //     showError()
+    //   }
+    // })
+
+    // lName.addEventListener('click', (e)=>{
+    //   if(lName.validity.valid){
+    //     lNameError.textContent = '';
+    //     lNameError.className = 'error'
+    //   } else {
+    //     showError()
+    //   }
+    // })
+
+    function checkValidity(input) {
+      if (!input.reportValidity() || input.value.trim().length === 0) {
+        return false
+      }
+
+      if (input.name === "email") {
+        // special validity
+        const emailRegExp = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+
+        if (!emailRegExp.test(input.value)) {
+          return false
+        }
+      }
+
+      return true
+    }
+
+    function cleanError(input) {
+      input.classList.remove("error")
+      let nextSibling = input.nextElementSibling
+      nextSibling.textContent = ''
+    }
+ 
+    function showError(input) {
+      console.log("show error")
+      console.log({ input })
+
+      let nextSibling = input.nextElementSibling;
+
+      console.log({ inputName: input.name })
+
+      switch (input.name) {
+        case "fName":
+          console.log("input.name: fName");
+          input.classList.add("error");
+          nextSibling.textContent = "First Name cannot be empty";
+          break;
+        
+        case "lName":
+          console.log("input.name: lName");
+          nextSibling.textContent = "Last Name cannot be empty";
+          input.classList.add("error");
+          break;
+
+          case "email":
+            console.log("input.name: email");
+            nextSibling.textContent = "Looks like this is not an email";
+            break;
+          
+          case "password":
+            console.log("input.name: password");
+            nextSibling.textContent = "Password cannot be empty";
+            input.classList.add("error")
+      
+        default:
+          console.log("switch: did not find correct input")
+          break;
+      }
+    }
+
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('form submitted')
+
+      if (!checkValidity(fName)) {
+        console.log('failed first name')
+        showError(fName);
+      } else {
+        cleanError(fName);
+      }
+      console.log('passed first name')
+      
+      if (!checkValidity(lName)) {
+        showError(lName);
+      } else {
+        cleanError(lName);
+      }
+      
+      if (!checkValidity(email)) {
+        showError(email);
+      } else {
+        cleanError(email);
+      }
+      
+      if (!checkValidity(password)) {
+        showError(password);
+      } else {
+        cleanError(password);
+      }
+    })
+
+    //TODO:
+          //If any input field is empty, create an error message that says
+          //'Field Name cannot be empty'
+
+          //Make sure that the email address is correctly formated
     // TODO:
     // Receive an error message when the form is submitted if:
     //    - Any input field is empty. The message for this error should say "[Field Name] cannot be empty"
@@ -171,8 +333,8 @@
     // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
     // [a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?
 
-    let re = 'get your regular expression from the stackoverflow link above'
-    console.log(re.test('email input')) 
+    // let re = 'get your regular expression from the stackoverflow link above'
+    // console.log(re.test('email input')) 
   </script>
 </body>
 </html>
