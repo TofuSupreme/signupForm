@@ -89,23 +89,36 @@
       border: 1px solid rgba(0,0,0,0.15);
       
     }
-    /* input:invalid {
-      border-color: #900;
-      background-color: #FDD; 
+    #form input:focus {
+    outline: none;
+    border: 2px solid hsl(249, 10%, 26%) ;
     }
-    input:focus:invalid {
-      outline: none;
-    } */
 
-
-      .error, input.error {
-      display: inline-block;
+      #form input.error {
+      display: block;
       outline: none;
-      width: 100%;
-      padding: 0;
+      width: 100%;    
+      text-align: left;
+      font-style: normal;
       font-size: 80%;
+      color:hsl(0, 100%, 74%);
+      background: url("images/icon-error.svg") no-repeat 330px;
+      border: 2px solid hsl(0, 100%, 74%);
+    }
+
+    #form input.error:focus {
+      border: 2px solid hsl(0, 100%, 74%);
+    }
+
+    .error {
       text-align: right;
-      color: hsl(0, 100%, 74%);
+      font-style: italic;
+      color:hsl(0, 100%, 74%);
+      font-size: 80%;
+      margin-bottom: 10px;
+    }
+    .error::placeholder{
+      color:hsl(0, 100%, 74%);
     }
 
     #submit {
@@ -121,6 +134,7 @@
 
     #submit:hover {
       cursor: pointer;
+      background-color:hsl(155, 59%, 60%);
     }
 
     .bottom-text {
@@ -164,16 +178,16 @@
     </button>
 
     <form action="" id="form" autocomplete="on">
-      <input type="text" name="fName" id="fName" placeholder="First Name" autocomplete="given-name" required minlength="3" maxlength="25">
+      <input type="text" name="fName" id="fName" placeholder="First Name" autocomplete="given-name">
       <span class="error" aria-live="polite"></span>
 
-      <input type="text" name="lName" id="lName" placeholder="Last Name" autocomplete="family-name" required minlength="3" maxlength="25">
+      <input type="text" name="lName" id="lName" placeholder="Last Name" autocomplete="family-name">
       <span class="error" aria-live="polite"></span>
       
-      <input type="email" name="email" id="email" placeholder="Email Address" autocomplete="email" required minlength="3" maxlength="65">
+      <input type="email" name="email" id="email" placeholder="Email Address" autocomplete="email">
       <span class="error" aria-live="polite"></span>
 
-      <input type="password" name="pwd" id="pwd" placeholder="Password" autocomplete="current-password" required minlength="8" maxlength="20">
+      <input type="password" name="password" id="password" placeholder="Password" autocomplete="current-password">
       <span class="error" aria-live="polite"></span>
 
       <button type="submit" name="submit" id="submit">CLAIM YOUR FREE TRIAL </button>
@@ -200,30 +214,6 @@
     let submit = document.getElementById("submit")
 
     const error = document.querySelector("error")
-    
-    // const fNameError = document.querySelector('#fName + span.error')
-    // const lNameError = document.querySelector('#lName + span.error')
-    // const emailError = document.querySelector('#email + span.error')
-    // const passwordError = document.querySelector('#password + span.error')
-
-    
-    // fName.addEventListener('click', (e)=>{
-    //   if(fName.validity.valid){
-    //     fNameError.textContent = '';
-    //     fNameError.className = 'error'
-    //   } else {
-    //     showError()
-    //   }
-    // })
-
-    // lName.addEventListener('click', (e)=>{
-    //   if(lName.validity.valid){
-    //     lNameError.textContent = '';
-    //     lNameError.className = 'error'
-    //   } else {
-    //     showError()
-    //   }
-    // })
 
     function checkValidity(input) {
       if (!input.reportValidity() || input.value.trim().length === 0) {
@@ -272,12 +262,14 @@
           case "email":
             console.log("input.name: email");
             nextSibling.textContent = "Looks like this is not an email";
+            input.classList.add("error");
             break;
           
           case "password":
             console.log("input.name: password");
             nextSibling.textContent = "Password cannot be empty";
-            input.classList.add("error")
+            input.classList.add("error");
+            break;
       
         default:
           console.log("switch: did not find correct input")
