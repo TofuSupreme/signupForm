@@ -154,10 +154,51 @@
       display: none;
       font-size: 11px; 
       text-align: center; 
-      }
+    }
     .attribution a { 
       display: none;
       color: hsl(228, 45%, 44%); 
+    }
+
+      @media screen and (min-width: 1000px){
+        body {
+          background-image: url("images/bg-intro-desktop.png");
+          background-color: hsl(0, 100%, 74%) ;    
+        }
+
+        .main-text {
+          margin-top: 5.4em;
+          font-size: 3.4em;
+          font-weight: 800;
+          margin-right: 13em;
+        }
+        .sub-text {
+          text-align: left;
+          padding-left: 7em;
+          padding-right: 45em;
+        }
+
+        .top-button {
+          margin-right: -36em;
+          margin-top: -27.5em;
+          padding-left: 7em;
+          padding-right: 7em;
+        }
+        #form {
+          display: flex;
+          margin-left: 35em;
+          padding: 2.5em;
+        }
+
+        #form input {
+          width: 35em;
+        }
+
+        .attribution a {
+          display: block;
+        }
+
+
       }
   </style>
 </head>
