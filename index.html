@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+  
+  <title>Frontend Mentor | Intro component with sign up form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+    
+    body {
+      min-height: 100vh;
+      font-size: 1.6rem;
+      background-image: url("images/bg-intro-mobile.png");
+      background-color: hsl(0, 100%, 74%) ;    
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 1.5em;
+    }
+
+    .main-text {
+      margin-top: 3em;
+      text-align: center;
+      font-weight: 600;     
+      color: white;
+    }
+
+    .sub-text {      
+      padding: 8px;
+      text-align: center;
+      font-weight: 400;
+      color:white;
+    }
+
+    .top-button {
+      margin-top: 3em;
+      padding: 18px 55px;
+      background-color: hsl(248, 32%, 49%);
+      font-size: 1.55rem;
+      line-height: 1.7;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: 0px 8px 1.5px 0px rgba(0,0,0,0.15);
+      /* box-shadow: 0px -8px 1.5px 0px rgba(0,0,0,0.15) inset; */
+    }
+
+    #form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+      padding: 1.5em;
+      background-color: white;
+      border-radius: 10px;
+      outline: none;
+      box-shadow: 0px 8px 1.5px 0px rgba(0,0,0,0.15);
+    }
+
+    #form input {
+      /* to change height use line-height */
+      font-weight: 700;
+      box-sizing: border-box;
+      width: 100%;
+      margin-bottom: 1.3em;
+      padding: 0 1.2em;
+      line-height: 5.45rem;
+      border-radius: 10px;
+      outline: none;
+      border: 1px solid rgba(0,0,0,0.15);
+      
+    }
+    #form input:focus {
+    outline: none;
+    border: 2px solid hsl(249, 10%, 26%) ;
+    }
+
+      #form input.error {
+      display: block;
+      outline: none;
+      width: 100%;    
+      text-align: left;
+      font-style: normal;
+      font-size: 80%;
+      color:hsl(0, 100%, 74%);
+      background: url("images/icon-error.svg") no-repeat 330px;
+      border: 2px solid hsl(0, 100%, 74%);
+    }
+
+    #form input.error:focus {
+      border: 2px solid hsl(0, 100%, 74%);
+    }
+
+    .error {
+      text-align: right;
+      font-style: italic;
+      color:hsl(0, 100%, 74%);
+      font-size: 80%;
+      margin-bottom: 10px;
+    }
+    .error::placeholder{
+      color:hsl(0, 100%, 74%);
+    }
+
+    #submit {
+      background-color: hsl(154, 59%, 51%);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: white;
+      line-height: 4;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: inset 0px -5px 0px 0px rgb(0 0 0 / 10%);
+    }
+
+    #submit:hover {
+      cursor: pointer;
+      background-color:hsl(155, 59%, 60%);
+    }
+
+    .bottom-text {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
+      color: hsl(87, 0%, 67%);
+      margin: 10px 30px 0 20px;
+      
+    }
+
+    .terms {
+      font-weight: 600;
+      color:hsl(0, 100%, 74%)
+    }
+    .attribution { 
+      display: none;
+      font-size: 11px; 
+      text-align: center; 
+    }
+    .attribution a { 
+      display: none;
+      color: hsl(228, 45%, 44%); 
+    }
+
+      @media screen and (min-width: 1000px){
+        body {
+          background-image: url("images/bg-intro-desktop.png");
+          background-color: hsl(0, 100%, 74%) ;    
+        }
+
+        .main-text {
+          margin-top: 5.4em;
+          font-size: 3.4em;
+          font-weight: 800;
+          margin-right: 13em;
+        }
+        .sub-text {
+          text-align: left;
+          padding-left: 7em;
+          padding-right: 45em;
+        }
+
+        .top-button {
+          margin-right: -36em;
+          margin-top: -27.5em;
+          padding-left: 7em;
+          padding-right: 7em;
+        }
+        #form {
+          display: flex;
+          margin-left: 35em;
+          padding: 2.5em;
+        }
+
+        #form input {
+          width: 35em;
+        }
+
+        .attribution a {
+          display: block;
+        }
+
+
+      }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="main-text">
+      Learn to code by watching others
+    </h1>
+
+    <p class="sub-text">
+      See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
+      but understanding how developers think is invaluable. 
+    </p>
+
+    <button class="top-button"> 
+      Try it free 7 days then $20/mo. thereafter
+    </button>
+
+    <form action="" id="form" autocomplete="on">
+      <input type="text" name="fName" id="fName" placeholder="First Name" autocomplete="given-name">
+      <span class="error" aria-live="polite"></span>
+
+      <input type="text" name="lName" id="lName" placeholder="Last Name" autocomplete="family-name">
+      <span class="error" aria-live="polite"></span>
+      
+      <input type="email" name="email" id="email" placeholder="Email Address" autocomplete="email">
+      <span class="error" aria-live="polite"></span>
+
+      <input type="password" name="password" id="password" placeholder="Password" autocomplete="current-password">
+      <span class="error" aria-live="polite"></span>
+
+      <button type="submit" name="submit" id="submit">CLAIM YOUR FREE TRIAL </button>
+      <span class="bottom-text">
+        By clicking the button, you are agreeing to our <span class="terms">Terms and Services</span> 
+      </span>
+    </form>
+  </div>
+
+  
+  <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">TofuSupreme</a>.
+    </p>
+  </footer>
+
+  <script>
+    let form = document.getElementById("form");
+    let fName= document.getElementById("fName");
+    let lName = document.getElementById("lName");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let submit = document.getElementById("submit")
+
+    const error = document.querySelector("error")
+
+    function checkValidity(input) {
+      if (!input.reportValidity() || input.value.trim().length === 0) {
+        return false
+      }
+
+      if (input.name === "email") {
+        // special validity
+        const emailRegExp = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+
+        if (!emailRegExp.test(input.value)) {
+          return false
+        }
+      }
+
+      return true
+    }
+
+    function cleanError(input) {
+      input.classList.remove("error")
+      let nextSibling = input.nextElementSibling
+      nextSibling.textContent = ''
+    }
+ 
+    function showError(input) {
+      console.log("show error")
+      console.log({ input })
+
+      let nextSibling = input.nextElementSibling;
+
+      console.log({ inputName: input.name })
+
+      switch (input.name) {
+        case "fName":
+          console.log("input.name: fName");
+          input.classList.add("error");
+          nextSibling.textContent = "First Name cannot be empty";
+          break;
+        
+        case "lName":
+          console.log("input.name: lName");
+          nextSibling.textContent = "Last Name cannot be empty";
+          input.classList.add("error");
+          break;
+
+          case "email":
+            console.log("input.name: email");
+            nextSibling.textContent = "Looks like this is not an email";
+            input.classList.add("error");
+            break;
+          
+          case "password":
+            console.log("input.name: password");
+            nextSibling.textContent = "Password cannot be empty";
+            input.classList.add("error");
+            break;
+      
+        default:
+          console.log("switch: did not find correct input")
+          break;
+      }
+    }
+
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('form submitted')
+
+      if (!checkValidity(fName)) {
+        console.log('failed first name')
+        showError(fName);
+      } else {
+        cleanError(fName);
+      }
+      console.log('passed first name')
+      
+      if (!checkValidity(lName)) {
+        showError(lName);
+      } else {
+        cleanError(lName);
+      }
+      
+      if (!checkValidity(email)) {
+        showError(email);
+      } else {
+        cleanError(email);
+      }
+      
+      if (!checkValidity(password)) {
+        showError(password);
+      } else {
+        cleanError(password);
+      }
+    })
+
+    //TODO:
+          //If any input field is empty, create an error message that says
+          //'Field Name cannot be empty'
+
+          //Make sure that the email address is correctly formated
+    // TODO:
+    // Receive an error message when the form is submitted if:
+    //    - Any input field is empty. The message for this error should say "[Field Name] cannot be empty"
+    //    - The email address is not formatted correctly (i.e. a correct email address should have this structure: name@host.tld). The message for this error should say "Looks like this is not an email"
+
+    // keep track of error state
+    // email regexp:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+    // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    // [a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?
+
+    // let re = 'get your regular expression from the stackoverflow link above'
+    // console.log(re.test('email input')) 
+  </script>
+</body>
+</html>
